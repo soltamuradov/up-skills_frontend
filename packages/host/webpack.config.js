@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {ModuleFederationPlugin} = require('webpack').container;
+const RemotePlugin = require('external-remotes-plugin');
 
 
 module.exports = {
@@ -32,6 +34,18 @@ module.exports = {
   },
 
   plugins: [
+    new RemotePlugin(),
+    new ModuleFederationPlugin({
+      name: 'host',
+      remotes: {
+        addquestions: 'addquestions@http://localhost:3001/remoteEntry.js'
+      },
+      shared: {
+        react:  {singleton: true},
+        'react-dom': {singleton: true}
+      }
+
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })

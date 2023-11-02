@@ -4,8 +4,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
   "devDependencies": {
+    "external-remotes-plugin": "^1.0.0",
     "lerna": "^7.4.2"
   }
 }
