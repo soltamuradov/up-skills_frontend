@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {ModuleFederationPlugin} = require('webpack').container;
 
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
 
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 3001,
+    port: 3000,
   },
   output: {
     publicPath: 'auto'
@@ -33,14 +32,6 @@ module.exports = {
   },
 
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'addquestions',
-      filename: 'remoteEntry.js',
-      shared: {
-        react:  {singleton: true},
-        'react-dom': {singleton: true}
-      }
-    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
