@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AddQuestions = React.lazy(() => import('addquestions/App'))
+const QuestionsList = React.lazy(() => import('questionslist/App'))
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       I am host
       <div>
         <AddQuestions/>
+        <QuestionsList/>
       </div>
     </div>
   );

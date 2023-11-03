@@ -38,7 +38,8 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        addquestions: 'addquestions@http://localhost:3001/remoteEntry.js'
+        addquestions: 'addquestions@http://localhost:3001/remoteEntry.js',
+        questionslist: 'questionslist@http://localhost:3002/remoteEntry.js'
       },
       shared: {
         react:  {singleton: true},
