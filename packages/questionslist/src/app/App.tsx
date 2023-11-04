@@ -1,5 +1,5 @@
 import { RecoilRoot } from "recoil";
-import { QuestionsList } from "../widgets/QuestionsList";
+import { QuestionsList } from "widgets";
 
 const App = () => {
   return (

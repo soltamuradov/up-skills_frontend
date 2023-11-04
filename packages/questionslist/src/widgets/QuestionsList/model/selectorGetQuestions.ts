@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { getQuestionsListApi } from "../../../shared/api/getQuestions";
+import { getQuestionsListApi } from "shared";
 
 export const selectorGetQuestions = selector({
   key: 'questions',

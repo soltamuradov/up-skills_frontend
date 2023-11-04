@@ -6,11 +6,16 @@ module.exports = {
   entry: "./src/index.ts",
   mode: "development",
   resolve: {
-    extensions: [".js", ".jsx", '.ts', '.tsx'],
+    extensions: [".tsx", ".ts", ".js"],
+    preferAbsolute: true,
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    mainFiles: ['index'],
+    alias: {}
 },
   devServer: {
     static: path.join(__dirname, "dist"),
     port: 3002,
+    historyApiFallback: true,
   },
   output: {
     publicPath: "auto",
