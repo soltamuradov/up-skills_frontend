@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   mode: "development",
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", '.ts', '.tsx'],
 },
   devServer: {
     static: path.join(__dirname, "dist"),
@@ -19,19 +19,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)?$/,
-        loader: "babel-loader",
+        test: /\.tsx?$/,
+        use: "ts-loader",
         exclude: /node_modules/,
-        options: {
-          presets: [
-            [
-              "@babel/preset-react",
-              {
-                runtime: "automatic",
-              },
-            ],
-          ],
-        },
       },
     ],
   },
