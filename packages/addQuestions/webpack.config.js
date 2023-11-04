@@ -1,51 +1,47 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {ModuleFederationPlugin} = require('webpack').container;
-
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
-  entry: './src/index.js',
-  mode: 'development',
-
+  entry: "./src/index.ts",
+  mode: "development",
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+  },
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, "dist"),
     port: 3001,
   },
   output: {
-    publicPath: 'auto'
+    publicPath: "auto",
   },
 
   module: {
     rules: [
       {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.tsx?$/,
+        use: "ts-loader",
         exclude: /node_modules/,
-        options: {
-          presets: [
-            ['@babel/preset-react', {
-              runtime: 'automatic'
-            }]
-          ],
-        }
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'addquestions',
-      filename: 'remoteEntry.js',
+      name: "addquestions",
+      filename: "remoteEntry.js",
       exposes: {
-        './App': './src/App'
+        "./App": "./src/app/App",
       },
       shared: {
-        react:  {singleton: true},
-        'react-dom': {singleton: true}
-      }
+        react: { singleton: true },
+        "react-dom": { singleton: true },
+        "react-query": { singleton: true },
+        typescript: { singleton: true },
+      },
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
-    })
-  ]
-}
+      template: "./public/index.html",
+    }),
+  ],
+};
