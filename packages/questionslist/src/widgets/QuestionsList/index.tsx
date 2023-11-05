@@ -1,17 +1,25 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValueLoadable } from "recoil";
+import { format } from "date-fns";
 import { selectorGetQuestions } from "./model/selectorGetQuestions";
+import { IQuestion } from "shared";
+import { Question } from "./ui/Question";
 
 export const QuestionsList = () => {
-  const questions = useRecoilValue(selectorGetQuestions);
+  const { contents, state } =
+    useRecoilValueLoadable<IQuestion[]>(selectorGetQuestions);
+
+  if (state === "loading") {
+    return "Loading...";
+  }
+  if (state === "hasError") {
+    return "Error...";
+  }
+
   return (
-    <div className="bg-black-2">
-      <ul>{questions.map(el => (
-        <li>
-          <span className="text-white">{el.title}</span>
-          <span>{el.answer}</span>
-          <span>{el.createdAt}</span>
-        </li>
-      ))}</ul>
+    <div className="p-2">
+      {contents?.map(({ _id, title, answer, createdAt }) => (
+        <Question key={_id} title={title} answer={answer} date={format(createdAt, 'dd.MM.yyyy')} />
+      ))}
     </div>
   );
 };

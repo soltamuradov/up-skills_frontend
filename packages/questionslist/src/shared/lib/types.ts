@@ -9,3 +9,10 @@ export type Error = {
   code: number;
   message: string;
 } | null;
+
+export type IQuestion = {
+  _id: string;
+  title: string;
+  answer: string;
+  createdAt: number;
+}
