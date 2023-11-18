@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "packages-deps": "cd packages/addquestions && npm install && cd ../questionslist && npm install && cd ../host && npm install"
+  },
   "workspaces": [
     "packages/*"
   ],
