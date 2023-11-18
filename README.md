@@ -2,11 +2,13 @@
 
 ## install
 ```
-
 git clone https://github.com/soltamuradov/up-skills_frontend.git
-
+```
+```
 npm install
-
+```
+```
+npm run packages-deps
 ```
 
 ## run
