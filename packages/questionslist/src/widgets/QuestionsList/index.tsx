@@ -15,15 +15,15 @@ const mockData = [
 ];
 
 export const QuestionsList = () => {
-  const { contents, state } =
-    useRecoilValueLoadable<IQuestion[]>(selectorGetQuestions);
+  // const { contents, state } =
+  //   useRecoilValueLoadable<IQuestion[]>(selectorGetQuestions);
 
-  if (state === "loading") {
-    return "Loading...";
-  }
-  if (state === "hasError") {
-    return "Error...";
-  }
+  // if (state === "loading") {
+  //   return "Loading...";
+  // }
+  // if (state === "hasError") {
+  //   return "Error...";
+  // }
 
   return (
     <div className="p-2">
